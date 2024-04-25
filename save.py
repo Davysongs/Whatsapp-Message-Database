@@ -1,9 +1,10 @@
 import psycopg2
 import re
+import os
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-'postgres://whatsapp_db_7u74_user:mf9rloVP28qGx4NyusEMRaDWqSGRy5FE@dpg-col3on20si5c73e4u0o0-a.oregon-postgres.render.com/whatsapp_db_7u74'
+  my_secret = os.environ['DATABASE']
 )
 # Create a cursor
 cur = conn.cursor()

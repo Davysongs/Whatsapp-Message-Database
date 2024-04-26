@@ -9,7 +9,7 @@ conn = psycopg2.connect(
 # Create a cursor
 cur = conn.cursor()
 
-# Step 3: Create a table to store chat messages (if it doesn't exist)
+
 cur.execute("""
     CREATE TABLE IF NOT EXISTS whatsapp_chats (
         id SERIAL PRIMARY KEY,
@@ -21,12 +21,11 @@ cur.execute("""
 
 conn.commit()
 
-# Step 4: Read the chat data from a text file
+
 chat_file_path = "chats.txt"  # Provide the path to your chats.txt file
 with open(chat_file_path, 'r', encoding='utf-8') as file:
     lines = file.readlines()
 
-# Step 5: Extract information from each line and insert into the database
 # Regex to extract timestamp, sender, and message
 pattern = re.compile(r"(\d{1,2}/\d{1,2}/\d{2,4}, \d{1,2}:\d{2} [APM]+) - (.+?): (.+)")
 
@@ -51,6 +50,6 @@ for line in lines:
 conn.commit()
 print("Data inserted into the database.")
 
-# Step 7: Close the database connection
+
 cur.close()
 conn.close()
